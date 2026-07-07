@@ -2,12 +2,12 @@
 <html lang="en" dir="ltr">
 <?php include_once "includes/header.php"; ?>
 
-<div class="">
+<div class="mt-"  >
 		<?php
 		include "slider.php";
 		?>
 	</div>
-<div class="container-fluid">
+<div class="container-fluid mt-4">
 	
 	<div class="row">
 		<div class="col-sm-2  d-none d-sm-block d-md-block">
@@ -17,42 +17,34 @@
 		</div>
 		<!-- Cols-m-3 end -->
 
-		<div class="col-sm-8">
+		<div class="col-sm-7">
 
-
-			<br />
-
-			<div class="row">
-				<div class="col-sm-12 d-none d-sm-block d-md-block">
-					<?php
-					include_once "search_form.php";
-					?>
+			<div class="row" >
+				<!-- <div class="col-sm-12 d-none d-sm-block d-md-block">
+					
 					<div class="row" style="margin-top: 10px">
 						<div class="col-4 d-none d-sm-block d-md-block" align="center">
 							<img src="admin/img/web/mid.jpg" style="height: 180px;">
-							<!-- <span>Mid year sale</span> -->
 							<div class=" bg-info text-white " style="font-size:18px">Mid year sale</div>
 						</div>
 						<div class="col-4 d-none d-sm-block d-md-block" align="center">
 							<img src="admin/img/web/truck.jpg" style="height: 180px;">
-							<!-- <span>Truck For sale</span> -->
 							<div class=" bg-info text-white " style="font-size:18px">Truck For sale</div>
 
 						</div>
 						<div class="col-4 d-none d-sm-block d-md-block" align="center">
 							<img src="admin/img/web/suv.jpg" style="height: 180px;">
-							<!-- <span>Checkout our SUV</span> -->
 							<div class=" bg-info text-white " style="font-size:18px">Checkout Our SUV</div>
 
 						</div>
-						<!--<div class="col-3 d-none d-sm-block d-md-block" align="center">-->
-						<!--	<img src="admin/img/web/sports.jpg" style="height: 180px;">-->
-						<!-- <span>JDM Sprots Car</span>	 -->
-						<!--		<div class=" bg-info text-white " style="font-size:18px"> Sprots Car</div>-->
+						<div class="col-3 d-none d-sm-block d-md-block" align="center">
+							<img src="admin/img/web/sports.jpg" style="height: 180px;">
+						<span>JDM Sprots Car</span>	
+								<div class=" bg-info text-white " style="font-size:18px"> Sprots Car</div>
 
-						<!--</div>-->
-					</div><!-- Row end -->
-				</div>
+						</div>
+					</div>
+				</div> -->
 				<div class="col-sm-12">
 					<?php
 					include_once "latestvehicleinfo.php";
@@ -67,7 +59,7 @@
 			</div>
 
 		</div>
-		<div class="col-sm-2">
+		<div class="col-sm-3">
 			<?php
 			include_once "rightbarreviews.php";
 			?>

@@ -6,12 +6,8 @@
 	} else {
 		factory(jQuery)
 	}
-	$(".horizontal-main").sticky({
-		topSpacing: 0
-	})
-	$(".horizontal-header").sticky({
-		topSpacing: 0
-	})
+	// Keep the header in normal document flow so it does not cover the homepage content.
+	// The sticky behavior is disabled here to avoid overlap issues on the index page.
 }(function($) {
 	var slice = Array.prototype.slice;
 	var splice = Array.prototype.splice;

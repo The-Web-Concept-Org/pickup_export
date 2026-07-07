@@ -1,71 +1,78 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auto Image Scroller</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <style>
-        .image-carousel {
-            /* margin: 20px 0; */
-            /* border-radius: 8px; */
-            overflow: hidden;
-            /* box-shadow: 0 10px 30px rgba(0,0,0,0.15); */
-        }
+<style>
+    .homepage-slider {
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+    }
 
-        .carousel-item {
-            height: 520px;
-            background: #f5f5f5;
-        }
+    .image-carousel {
+        overflow: hidden;
+    }
 
-        .carousel-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    .carousel-item {
+        height: 520px;
+        background: #f5f5f5;
+    }
 
-        /* Left & Right Buttons - Faster, Pale & Better Positioned */
+    .carousel-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 52px;
+        height: 52px;
+        background: rgba(0, 0, 0, 0.45);
+        border-radius: 50%;
+        top: 50% !important;
+        transform: translateY(-50%);
+        padding: 0;
+        margin-left: 35px;
+        margin-right: 35px;
+        opacity: 1;
+        border: 2px solid rgba(255,255,255,0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease-in-out;
+        z-index: 2;
+    }
+
+    .carousel-control-prev:hover,
+    .carousel-control-next:hover {
+        background: rgba(231, 42, 26, 0.85);
+        border-color: #fff;
+        transform: translateY(-50%) scale(1.05);
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        width: 20px;
+        height: 20px;
+        filter: brightness(0) invert(1);
+    }
+
+    @media (max-width: 767px) {
         .carousel-control-prev,
         .carousel-control-next {
-            width: 70px;
-            height: 70px;
-            background: rgba(0, 0, 0, 0.25);   /* Pale / Transparent */
-            border-radius: 50%;
-            top: 50% !important;
-            transform: translateY(-50%);
-            padding: 18px;
-            margin-left: 20px;     /* Added padding from left */
-            margin-right: 20px;    /* Added padding from right */
-            opacity: 0.85;
+            width: 40px;
+            height: 40px;
+            margin-left: 8px;
+            margin-right: 8px;
         }
+    }
 
-        .carousel-control-prev:hover,
-        .carousel-control-next:hover {
-            background: rgba(0, 0, 0, 0.5);
-            opacity: 1;
-        }
+    .carousel-indicators {
+        display: none;
+    }
+</style>
 
-        .carousel-control-prev-icon,
-        .carousel-control-next-icon {
-            width: 32px;
-            height: 32px;
-        }
-
-        /* Removed bottom dots */
-        .carousel-indicators {
-            display: none;
-        }
-    </style>
-</head>
-<body>
-
-<div class="container-fluid px-0">
-    <div id="imageCarousel" class="carousel slide image-carousel" 
-         data-bs-ride="carousel" 
-         data-bs-interval="1800">   <!-- Faster sliding (1.8 seconds) -->
-        
-        <!-- Slides -->
+<div class="container-fluid px-0 homepage-slider">
+    <div id="imageCarousel" class="carousel slide image-carousel"
+         data-ride="carousel"
+         data-interval="1800">
         <div class="carousel-inner">
             <?php
             $active = "active";
@@ -73,8 +80,8 @@
             while($r = mysqli_fetch_assoc($q)):
             ?>
                 <div class="carousel-item <?= $active ?>">
-                    <img src="admin/img/slider/<?= $r['slider_img'] ?>" 
-                         class="d-block w-100" 
+                    <img src="admin/img/slider/<?= $r['slider_img'] ?>"
+                         class="d-block w-100"
                          alt="Slider Image">
                 </div>
             <?php
@@ -83,16 +90,11 @@
             ?>
         </div>
 
-        <!-- Left & Right Buttons -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-target="#imageCarousel" data-slide="prev" aria-label="Previous slide">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-target="#imageCarousel" data-slide="next" aria-label="Next slide">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
         </button>
     </div>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
