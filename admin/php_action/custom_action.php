@@ -3900,6 +3900,7 @@ if (get($dbc,"color_code  WHERE color_name ='".$_POST['vehicle_color_name']."'  
 			'buying_date' => $_POST['buying_date'],
 			'buying_price' => $_POST['buying_price'],
 			'lot_number' => $_POST['lot_number'],
+			'country_id' => $_POST['country_id'],
 			
 
 

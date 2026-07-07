@@ -2608,6 +2608,7 @@ function loadVehicle(load_vehicle_idMain, action) {
                 $("#vehicle_url").val(msg[0].vehicle_url)
                 $("#vehicle_est_price").val(msg[0].vehicle_est_price)
                 $('#vehicle_type option[value="'+msg[0].vehicle_type+'"]').prop("selected", true);
+                $('#country_id option[value="'+msg[0].country_id+'"]').prop("selected", true);
                 $("#vehicle_mode").val(msg[0].vehicle_type);		$("#vehicle_auctionhouse").val(msg[0].vehicle_auctionhouse);		$("#buying_date").val(msg[0].buying_date);		$("#buying_price").val(msg[0].buying_price);		$("#lot_number").val(msg[0].lot_number);
 
                 $('#vehicle_discount option[value="'+msg[0].vehicle_discount+'"]').prop("selected", true);

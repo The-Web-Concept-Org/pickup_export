@@ -1,19 +1,21 @@
 <style>
   .sidebar-section-header {
+    margin: 0 0 1rem 0 !important;
+    padding: 0.25rem 1rem;
     background: #000;
     color: #fff;
-    font-size: 16px;
-    font-weight: 700;
     text-align: center;
-    padding: 10px 15px;
-    margin: 0 !important;
-    line-height: 22px;
+    font-weight: 700;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+      "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.125rem;
   }
 
   .sidebar-quick-search {
-    background: linear-gradient(to bottom, #f5d442, #e8b923);
-    border: 1px solid #c9a820;
-    /* border-radius: 6px; */
+    background: linear-gradient(to bottom, #ff4d3d, #e72a1a);
+border: 1px solid #c61d10;
     padding: 12px 10px 14px;
     margin-bottom: 15px;
     margin-top: 16px;
@@ -190,20 +192,13 @@
     <script async defer crossorigin="anonymous"
       src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0&appId=281789882030150&autoLogAppEvents=1"
       nonce="cyenlrTN">
-    </script>
+      </script>
 
-    <div class="fb-page"
-      data-href="https://www.facebook.com/nexcojapan/"
-      data-tabs="timeline"
-      data-width=""
-      data-height=""
-      data-small-header="false"
-      data-adapt-container-width="true"
-      data-hide-cover="false"
+    <div class="fb-page" data-href="https://www.facebook.com/nexcojapan/" data-tabs="timeline" data-width=""
+      data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false"
       data-show-facepile="true">
 
-      <blockquote cite="https://www.facebook.com/nexcojapan/"
-        class="fb-xfbml-parse-ignore">
+      <blockquote cite="https://www.facebook.com/nexcojapan/" class="fb-xfbml-parse-ignore">
         <a href="https://www.facebook.com/nexcojapan/">nexcojapan</a>
       </blockquote>
 
@@ -211,9 +206,7 @@
 
     <hr />
 
-    <a href="https://www.facebook.com/nexcojapan/"
-       class="card-link btn btn-primary mb-2"
-       target="_blank">
+    <a href="https://www.facebook.com/nexcojapan/" class="card-link btn btn-primary mb-2" target="_blank">
       Check Our Fb Page
     </a>
 

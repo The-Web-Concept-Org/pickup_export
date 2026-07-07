@@ -201,6 +201,56 @@
 		    });
 		  </script>
 
+		<!-- ===== Fixed Sticky Navbar ===== -->
+		<script>
+		(function () {
+			var header = document.querySelector('.header-main');
+			if (!header) return;
+
+			/* --- 1. Create a spacer so content isn't hidden under the fixed bar --- */
+			var spacer = document.createElement('div');
+			spacer.id = 'navbar-spacer';
+			spacer.style.cssText = 'width:100%;display:block;';
+
+			function setSpacerHeight() {
+				var h = header.offsetHeight;
+				spacer.style.height = h + 'px';
+			}
+
+			/* Insert spacer right after the header-main element */
+			if (header.parentNode) {
+				header.parentNode.insertBefore(spacer, header.nextSibling);
+			}
+			setSpacerHeight();
+
+			/* Update spacer if window is resized */
+			window.addEventListener('resize', setSpacerHeight, { passive: true });
+
+			/* --- 2. Add shadow when user scrolls past 10px --- */
+			function onScroll() {
+				if (window.scrollY > 10) {
+					header.classList.add('nav-scrolled');
+				} else {
+					header.classList.remove('nav-scrolled');
+				}
+			}
+			window.addEventListener('scroll', onScroll, { passive: true });
+			onScroll();
+		})();
+		</script>
+
+		<!-- ===== Mobile nav body-lock ===== -->
+		<script>
+		(function () {
+			var toggle = document.getElementById('horizontal-navtoggle');
+			if (!toggle) return;
+			toggle.addEventListener('click', function () {
+				document.body.classList.toggle('nav-open');
+			});
+		})();
+		</script>
+
+
 	</body>
 </html>
 

@@ -20,27 +20,48 @@ include_once 'admin/includes/functions.php';
 	.sticky-wrapper.is-sticky {
 		height: auto !important;
 		background: transparent !important;
+		position: static !important;
+		z-index: auto !important;
 	}
 
-	/* Prevent the header from overlapping the page content */
+	/* header-main is now sticky via ux-enhancements.css */
 	.header-main {
-		position: relative !important;
-		z-index: 3 !important;
+		z-index: 1050 !important;
 	}
 
 	.horizontal-main,
 	.horizontal-header,
 	.sticky-wrapper,
 	.sticky-wrapper.is-sticky {
-		position: relative !important;
 		height: auto !important;
-		z-index: auto !important;
 	}
 
+	/* Mobile-only top strip — hide on desktop */
 	.horizontal-header {
 		background-color: #ffffff !important;
 		border-bottom: 2px solid #e72a1a !important;
+		display: flex !important; /* visible on mobile by default */
 	}
+
+	/* Hide mobile strip on desktop, show desktop nav */
+	@media (min-width: 992px) {
+		.horizontal-header {
+			display: none !important;
+		}
+	}
+
+	/* Hide desktop nav on mobile (shown by the horizontal menu plugin) */
+	@media (max-width: 991px) {
+		.horizontal-main {
+			display: none !important;
+		}
+		/* But show it when menu is toggled open */
+		.horizontalMenu.menuopen ~ .horizontal-main,
+		body.nav-open .horizontal-main {
+			display: block !important;
+		}
+	}
+
 
 	.horizontal-header .animated-arrow span,
 	.horizontal-header .animated-arrow span:before,
@@ -287,8 +308,10 @@ include_once 'admin/includes/functions.php';
 			background: #fff !important;
 			width: 500px !important;
 			max-width: 100% !important;
-			height: 50px !important;
+			height: 42px !important;
 			overflow: hidden !important;
+			margin-top: 5px;
+			margin-bottom: 5px;
 		}
 
 		.pickup-search-box input[type=text] {

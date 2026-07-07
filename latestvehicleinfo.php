@@ -70,14 +70,26 @@
 	}
 
 	.arrival-heading {
+		margin: 0 0 1rem 0 !important;
+		/* mb-3 */
+		padding: 0.25rem 1rem;
+		/* py-1 px-4 */
 		background: #b6bcc4;
+		/* bg-black */
 		color: #000;
-		font-size: 20px;
-		font-weight: bold;
-		padding: 7px;
-		margin-bottom: 18px;
-		text-transform: uppercase;
+		/* text-white *           /* text-center */
+		font-weight: 700;
+		/* font-bold */
+		font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+			"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+		/* font-sans */
+		font-size: 1rem;
+		/* 16px */
+		line-height: 1.5;
+		border-radius: 0.125rem;
+		/* rounded-sm */
 	}
+
 
 	.arrival-grid {
 		display: flex;
@@ -107,19 +119,19 @@
 	}
 
 	.arrival-item h4 {
-		margin-top: 10px;
-		margin-bottom: 2px;
-		font-size: 17px;
-		font-weight: 700;
-		color: #111;
-		text-transform: uppercase;
-	}
+    margin-top: 10px;
+    margin-bottom: 2px;
+    font-size: 17px !important;
+    font-weight: 400 !important;        
+    color: #111;
+    text-transform: uppercase; /* uppercase */
+}
 
 	.arrival-item p {
 		margin: 0;
-		font-size: 14px;
+		font-size: 12px !important;
 		color: #4c5b6d;
-		font-weight: 600;
+		font-weight: 600 !important;
 	}
 
 	.arrival-btn {

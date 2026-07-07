@@ -67,7 +67,9 @@
 
 	<!--Slider-->
 
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald:300,400|Roboto|Open+Sans:300,400,700">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@300;400&family=Roboto&family=Open+Sans:wght@300;400;700&display=swap">
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 
@@ -140,6 +142,9 @@
 
 
 
+
+	<!-- UX Enhancements (sticky nav, typography, responsiveness) -->
+	<link rel="stylesheet" href="css/ux-enhancements.css">
 
 </head>
 

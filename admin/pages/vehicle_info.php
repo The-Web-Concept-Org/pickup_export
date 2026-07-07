@@ -740,7 +740,7 @@
 
 	<div class="row">
 
-		<div class="col-sm-4">
+		<div class="col-sm-3">
 
 			<label for="">Vehicle Type</label>			
 
@@ -760,7 +760,27 @@
 
 		</div>
 
-		<div class="col-sm-4">
+		<div class="col-sm-3">
+
+			<label for="">Country</label>			
+
+			<select name="country_id" id="country_id" class="form-control">
+
+						<option value="">~~SELECT~~</option>
+
+				<?php $q = get($dbc,"countries ORDER BY country_name ASC");
+
+							while($r = mysqli_fetch_assoc($q)): ?>
+
+						<option value="<?=$r['country_id']?>"><?=$r['country_name']?></option>
+
+					<?php endwhile ?>
+
+			</select>
+
+		</div>
+
+		<div class="col-sm-3">
 
 			<div class="form-group">
 
@@ -772,7 +792,7 @@
 
 		</div>
 
-		<div class="col-sm-4">
+		<div class="col-sm-3">
 
 			<div class="form-group">
 
