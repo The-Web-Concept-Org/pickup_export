@@ -20,7 +20,7 @@
         ?>
 
         <li>
-          <a href="car-lists.php?advance=s&maker=<?= $maker['maker_id'] ?>">
+          <a href="advancesearch.php?advance=s&maker=<?= $maker['maker_id'] ?>">
 
             <img src="admin/img/vehicles_images/<?= $maker['maker_img'] ?>" alt="<?= $maker['maker_name'] ?>">
 
@@ -59,7 +59,7 @@
         ?>
 
         <li>
-          <a href="car-lists.php?get=type&type=<?= $r['body_type_id'] ?>">
+          <a href="advancesearch.php?advance=s&body_type=<?= $r['body_type_id'] ?>">
             <img src="admin/img/vehicles_images/<?= $r['body_type_img'] ?>">
             <span><?= $r['body_type_name'] ?></span>
           </a>
@@ -88,31 +88,31 @@
     <ul class="sidebar-list">
 
       <li><a
-          href="car-lists.php?advance=s&maker=null&brands=null&body_type=null&minimum_price=0&maximum_price=500"><span>Under
+          href="advancesearch.php?advance=s&min_price=0&max_price=500"><span>Under
             $500</span></a></li>
 
       <li><a
-          href="car-lists.php?advance=s&maker=null&brands=null&body_type=null&minimum_price=500&maximum_price=1000"><span>$500
+          href="advancesearch.php?advance=s&min_price=500&max_price=1000"><span>$500
             - $1,000</span></a></li>
 
       <li><a
-          href="car-lists.php?advance=s&maker=null&brands=null&body_type=null&minimum_price=1000&maximum_price=1500"><span>$1,000
+          href="advancesearch.php?advance=s&min_price=1000&max_price=1500"><span>$1,000
             - $1,500</span></a></li>
 
       <li><a
-          href="car-lists.php?advance=s&maker=null&brands=null&body_type=null&minimum_price=1500&maximum_price=2000"><span>$1,500
+          href="advancesearch.php?advance=s&min_price=1500&max_price=2000"><span>$1,500
             - $2,000</span></a></li>
 
       <li><a
-          href="car-lists.php?advance=s&maker=null&brands=null&body_type=null&minimum_price=2000&maximum_price=2500"><span>$2,000
+          href="advancesearch.php?advance=s&min_price=2000&max_price=2500"><span>$2,000
             - $2,500</span></a></li>
 
       <li><a
-          href="car-lists.php?advance=s&maker=null&brands=null&body_type=null&minimum_price=2500&maximum_price=4000"><span>$2,500
+          href="advancesearch.php?advance=s&min_price=2500&max_price=4000"><span>$2,500
             - $4,000</span></a></li>
 
       <li><a
-          href="car-lists.php?advance=s&maker=null&brands=null&body_type=null&min_price=4000&max_price=50000000"><span>Over
+          href="advancesearch.php?advance=s&min_price=4000&max_price=50000000"><span>Over
             $4,000</span></a></li>
 
     </ul>
@@ -137,7 +137,7 @@
         ?>
 
         <li>
-          <a href="car-lists.php?advance=s&fuel=<?= $qbc['fuel_name'] ?>">
+          <a href="advancesearch.php?advance=s&fuel_type=<?= $qbc['fuel_name'] ?>">
             <span><?= $qbc['fuel_name'] ?></span>
           </a>
         </li>
@@ -159,21 +159,26 @@
 
   <div class="card-body">
 
-    <ul class="sidebar-list">
+   <ul class="sidebar-list">
+    <?php
+    // Show 10 countries that actually have vehicles
+    $sqlCountries = mysqli_query($dbc, "
+        SELECT DISTINCT c.country_id, c.country_name 
+        FROM countries c 
+        INNER JOIN vehicle_info v ON v.country_id = c.country_id 
+        ORDER BY c.country_name ASC 
+        LIMIT 10
+    ");
 
-      <li><a href="#"><span>Tanzania</span></a></li>
-      <li><a href="#"><span>Kenya</span></a></li>
-      <li><a href="#"><span>Uganda</span></a></li>
-      <li><a href="#"><span>Bahamas</span></a></li>
-      <li><a href="#"><span>Surinam</span></a></li>
-      <li><a href="#"><span>Jamaica</span></a></li>
-      <li><a href="#"><span>Trinidad & Tobago</span></a></li>
-      <li><a href="#"><span>Guyana</span></a></li>
-      <li><a href="#"><span>UK</span></a></li>
-      <li><a href="#"><span>Germany</span></a></li>
-      <li><a href="#"><span>Cyprus</span></a></li>
-
-    </ul>
+    while ($country = mysqli_fetch_assoc($sqlCountries)):
+    ?>
+        <li>
+            <a href="advancesearch.php?advance=s&country=<?= $country['country_id'] ?>">
+                <span><?= htmlspecialchars($country['country_name']) ?></span>
+            </a>
+        </li>
+    <?php endwhile; ?>
+</ul>
 
   </div>
 

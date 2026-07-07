@@ -40,7 +40,8 @@ include_once 'admin/includes/functions.php';
 	.horizontal-header {
 		background-color: #ffffff !important;
 		border-bottom: 2px solid #e72a1a !important;
-		display: flex !important; /* visible on mobile by default */
+		display: flex !important;
+		/* visible on mobile by default */
 	}
 
 	/* Hide mobile strip on desktop, show desktop nav */
@@ -55,8 +56,9 @@ include_once 'admin/includes/functions.php';
 		.horizontal-main {
 			display: none !important;
 		}
+
 		/* But show it when menu is toggled open */
-		.horizontalMenu.menuopen ~ .horizontal-main,
+		.horizontalMenu.menuopen~.horizontal-main,
 		body.nav-open .horizontal-main {
 			display: block !important;
 		}
@@ -515,11 +517,10 @@ include_once 'admin/includes/functions.php';
 					<ul class="horizontalMenu-list">
 						<li class="d-lg-none mobile-search-item"
 							style="padding: 15px 20px; border-bottom: 1px solid #eee; width: 100%;">
-							<form action="car-lists.php" method="get">
+							<form action="advancesearch.php" method="get">
 								<input type="hidden" name="advance" value="s">
 								<div class="pickup-search-box-mobile">
-									<input type="text" name="stockid" placeholder="ENTER STOCK ID OR SEARCH KEYWORDS"
-										required>
+									<input type="text" name="stockid" placeholder="ENTER STOCK ID" required>
 									<button type="submit" class="search-btn">
 										<i class="fa fa-search"></i>
 									</button>
@@ -527,7 +528,7 @@ include_once 'admin/includes/functions.php';
 							</form>
 						</li>
 						<li aria-haspopup="true"><a href="index.php">Home</a></li>
-						<li aria-haspopup="true"><a href="car-lists.php?type=htcjapan_stock">Vehicles <span
+						<li aria-haspopup="true"><a href="advancesearch.php?type=stock">Vehicles <span
 									class="fa fa-caret-down m-0"></span></a>
 							<div class="horizontal-megamenu clearfix">
 								<div class="container">
@@ -538,7 +539,7 @@ include_once 'admin/includes/functions.php';
 												<?php $q = get($dbc, "maker WHERE maker_sts = '1' LIMIT 10");
 												while ($r = mysqli_fetch_assoc($q)): ?>
 													<li><a
-															href="car-lists.php?advance=s&maker=<?= $r['maker_id'] ?>"><?= $r['maker_name'] ?></a>
+															href="advancesearch.php?advance=s&maker=<?= $r['maker_id'] ?>"><?= $r['maker_name'] ?></a>
 													</li>
 												<?php endwhile ?>
 											</ul>
@@ -547,7 +548,7 @@ include_once 'admin/includes/functions.php';
 												<?php $q = get($dbc, "brands WHERE brand_status = '1' LIMIT 10");
 												while ($r = mysqli_fetch_assoc($q)): ?>
 													<li><a
-															href="car-lists.php?advance=s&brands=<?= $r['brand_id'] ?>"><?= $r['brand_name'] ?></a>
+															href="advancesearch.php?advance=s&brands=<?= $r['brand_id'] ?>"><?= $r['brand_name'] ?></a>
 													</li>
 												<?php endwhile ?>
 											</ul>
@@ -556,7 +557,7 @@ include_once 'admin/includes/functions.php';
 												<?php $q = get($dbc, "body_type WHERE body_type_sts = '1' LIMIT 10");
 												while ($r = mysqli_fetch_assoc($q)): ?>
 													<li><a
-															href="car-lists.php?advance=s&maker=null&brands=null&body_type=<?= $r['body_type_id'] ?>&stockid="><?= $r['body_type_name'] ?></a>
+															href="advancesearch.php?advance=s&body_type=<?= $r['body_type_id'] ?>"><?= $r['body_type_name'] ?></a>
 													</li>
 												<?php endwhile ?>
 											</ul>
@@ -565,14 +566,14 @@ include_once 'admin/includes/functions.php';
 												<?php $q = get($dbc, "transmission WHERE transmission_sts = '1' LIMIT 10");
 												while ($r = mysqli_fetch_assoc($q)): ?>
 													<li><a
-															href="car-lists.php?gs=transmission&transmission=<?= $r['transmission_name'] ?>"><?= $r['transmission_name'] ?></a>
+															href="advancesearch.php?advance=s&transmission=<?= $r['transmission_name'] ?>"><?= $r['transmission_name'] ?></a>
 													</li>
 												<?php endwhile ?>
 												<li class="title mt-4">Steering</li>
 												<?php $q = get($dbc, "options WHERE option_sts = '1' LIMIT 10");
 												while ($r = mysqli_fetch_assoc($q)): ?>
 													<li><a
-															href="car-lists.php?gs=option&option=<?= $r['option_name'] ?>"><?= $r['option_name'] ?></a>
+															href="advancesearch.php?advance=s&options=<?= $r['option_name'] ?>"><?= $r['option_name'] ?></a>
 													</li>
 												<?php endwhile ?>
 											</ul>
@@ -581,7 +582,7 @@ include_once 'admin/includes/functions.php';
 												<?php $q = get($dbc, "drive WHERE drive_sts = '1' LIMIT 10");
 												while ($r = mysqli_fetch_assoc($q)): ?>
 													<li><a
-															href="car-lists.php?gs=drive&drive=<?= $r['drive_name'] ?>"><?= $r['drive_name'] ?></a>
+															href="advancesearch.php?advance=s&drive=<?= $r['drive_name'] ?>"><?= $r['drive_name'] ?></a>
 													</li>
 												<?php endwhile ?>
 											</ul>
@@ -597,10 +598,10 @@ include_once 'admin/includes/functions.php';
 					</ul>
 				</nav>
 				<div class="pickup-header-search d-none d-lg-block">
-					<form action="car-lists.php" method="get">
+					<form action="advancesearch.php" method="get">
 						<input type="hidden" name="advance" value="s">
 						<div class="pickup-search-box">
-							<input type="text" name="stockid" placeholder="ENTER STOCK ID OR SEARCH KEYWORDS" required>
+							<input type="text" name="stockid" placeholder="ENTER STOCK ID" required>
 							<button type="submit" class="search-btn">
 								<i class="fa fa-search"></i>
 							</button>

@@ -65,7 +65,7 @@
 								<hr class="deep-purple  accent-2 mb-4 mt-0 d-inline-block mx-auto">
 								<ul class="list-unstyled list-inline">
 									<li class="list-inline-item">
-										<a class="btn-floating btn-sm rgba-white-slight mx-1 waves-effect waves-light" href="https://www.facebook.com/HTCJapan/">
+										<a class="btn-floating btn-sm rgba-white-slight mx-1 waves-effect waves-light" href="https://www.facebook.com/">
 											<i class="fa fa-facebook bg-facebook"></i>
 										</a>
 									</li>

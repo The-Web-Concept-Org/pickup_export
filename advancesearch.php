@@ -1,3 +1,5 @@
+<!doctype html>
+<html lang="en" dir="ltr">
 <?php
 include_once "includes/header.php";
 // print_r($_REQUEST);
@@ -22,12 +24,14 @@ include_once "includes/header.php";
   </div>
 </div>
 <!--/BreadCrumb-->
-<div class="container-fluid">
-  <div class="form-row">
-    <div class="col-sm-2 col-lg-2 col-md-2">
-      <?php
-      include_once "brandbar.php";
-      ?>
+<div class="container-fluid mt-3">
+  <div class="row align-items-start">
+    <div class="col-sm-2 col-lg-2 col-md-2 d-none d-sm-block d-md-block">
+      <div style="position:sticky;top:80px;">
+        <?php
+        include_once "brandbar.php";
+        ?>
+      </div>
     </div>
     <div class="col-sm-10 col-lg-10 col-md-10">
       <div class="card" style="background-color: #efecec">
@@ -50,7 +54,7 @@ include_once "includes/header.php";
             $count_query = mysqli_query($dbc, "SELECT COUNT(*) as total FROM vehicle_info");
             // print_r($query);
           } elseif (isset($_REQUEST['advance'])) {
-            $makerV = $brandV = $chasis_veh = $min_year = $colorV = $transmissionV = $optionsV = $min_price = $body_typeV = $fuelV = $stockidV = $eng_size = $eng_km = $load_cap = $eng_typ = $veh_disc = '';
+            $makerV = $brandV = $chasis_veh = $min_year = $colorV = $transmissionV = $optionsV = $min_price = $body_typeV = $fuelV = $stockidV = $eng_size = $eng_km = $load_cap = $eng_typ = $veh_disc = $countryV = $driveV = '';
             // echo "advance";
             if (isset($_REQUEST['maker']) and $_REQUEST['maker'] != 'null' and $_REQUEST['maker'] != '0') {
               $makerV = "AND vehicle_maker=" . $_REQUEST['maker'];
@@ -95,9 +99,9 @@ include_once "includes/header.php";
             if (isset($_REQUEST['options']) and $_REQUEST['options'] != 'null') {
               $optionsV = "AND vehicle_option='" . $_REQUEST['options'] . "'";
             }
-            // if (isset($_REQUEST['drive']) AND $_REQUEST['drive']!='null') {
-            // $driveV="AND vehicle_drive='".$_REQUEST['drive']."'";
-            // }
+            if (isset($_REQUEST['drive']) and $_REQUEST['drive'] != 'null' and $_REQUEST['drive'] != '') {
+              $driveV = "AND vehicle_drive='" . $_REQUEST['drive'] . "'";
+            }
             if (isset($_REQUEST['fuel_type']) and $_REQUEST['fuel_type'] != 'null') {
               $fuelV = "AND vehicle_fuel='" . $_REQUEST['fuel_type'] . "'";
             }
@@ -108,6 +112,9 @@ include_once "includes/header.php";
               $stockidV = "AND vehicle_stock_id='" . $_REQUEST['stockid'] . "'";
             }
             // echo $stockidV ;
+            if (isset($_REQUEST['country']) and $_REQUEST['country'] != 'null' and $_REQUEST['country'] != '') {
+              $countryV = "AND country_id=" . $_REQUEST['country'];
+            }
           
             // if (isset($_REQUEST['reg_year_from']) AND $_REQUEST['reg_year_from']!='null' AND $_REQUEST['reg_year_to']!='null') {
             // $reg_year_from="AND vehicle_reg_year BETWEEN ".$_REQUEST['reg_year_from']." AND ".$_REQUEST['reg_year_to'] ;
@@ -116,10 +123,10 @@ include_once "includes/header.php";
               $min_price = "AND vehicle_est_price BETWEEN " . $_REQUEST['min_price'] . " AND " . $_REQUEST['max_price'];
             }
             //$sq="SELECT * FROM vehicle_info WHERE vehicle_status='active' ".$makerV." ".$brandV." ".$body_typeV." ".$transmissionV." ".$optionsV." ".$driveV." ".$fuelV." ".$reg_year_from." ".$min_price." ".$stockidV." ";
-            $sq = "SELECT * FROM vehicle_info WHERE vehicle_status!='' " . $makerV . " " . $brandV . " " . $chasis_veh . " " . $min_year . " " . $colorV . " " . $transmissionV . " " . $optionsV . " " . $min_price . " " . $body_typeV . " " . $fuelV . " " . $stockidV . " " . $eng_size . " " . $eng_km . " " . $load_cap . " " . $eng_typ . " " . $veh_disc . " ORDER BY vehicle_id DESC LIMIT {$offsets},{$limit}";
+            $sq = "SELECT * FROM vehicle_info WHERE vehicle_status!='' " . $makerV . " " . $brandV . " " . $chasis_veh . " " . $min_year . " " . $colorV . " " . $transmissionV . " " . $optionsV . " " . $min_price . " " . $body_typeV . " " . $fuelV . " " . $stockidV . " " . $eng_size . " " . $eng_km . " " . $load_cap . " " . $eng_typ . " " . $veh_disc . " " . $countryV . " " . $driveV . " ORDER BY vehicle_id DESC LIMIT {$offsets},{$limit}";
             //  echo $sq;
             $query = mysqli_query($dbc, $sq);
-            $count_sq = "SELECT COUNT(*) as total FROM vehicle_info WHERE vehicle_status!='' " . $makerV . " " . $brandV . " " . $chasis_veh . " " . $min_year . " " . $colorV . " " . $transmissionV . " " . $optionsV . " " . $min_price . " " . $body_typeV . " " . $fuelV . " " . $stockidV . " " . $eng_size . " " . $eng_km . " " . $load_cap . " " . $eng_typ . " " . $veh_disc;
+            $count_sq = "SELECT COUNT(*) as total FROM vehicle_info WHERE vehicle_status!='' " . $makerV . " " . $brandV . " " . $chasis_veh . " " . $min_year . " " . $colorV . " " . $transmissionV . " " . $optionsV . " " . $min_price . " " . $body_typeV . " " . $fuelV . " " . $stockidV . " " . $eng_size . " " . $eng_km . " " . $load_cap . " " . $eng_typ . " " . $veh_disc . " " . $countryV . " " . $driveV;
             $count_query = mysqli_query($dbc, $count_sq);
           }
           ?>
@@ -134,7 +141,7 @@ include_once "includes/header.php";
                     <option value="null">Choose Maker</option>
                     <?php $q = get($dbc, "maker WHERE maker_sts = '1'");
                     while ($r = mysqli_fetch_assoc($q)): ?>
-                      <option value="<?= $r['maker_id'] ?>"><?= $r['maker_name'] ?></option>
+                      <option value="<?= $r['maker_id'] ?>" <?= (isset($_REQUEST['maker']) && $_REQUEST['maker'] == $r['maker_id']) ? 'selected' : '' ?>><?= $r['maker_name'] ?></option>
                     <?php endwhile ?>
                   </optgroup>
                 </select>
@@ -154,7 +161,7 @@ include_once "includes/header.php";
                     <option value="null">Select Brand</option>
                     <?php $q = get($dbc, "brands WHERE brand_status = 1 Limit 1");
                     while ($r = mysqli_fetch_assoc($q)): ?>
-                      <option value="<?= $r['brand_id'] ?>"><?= $r['brand_name'] ?></option>
+                      <option value="<?= $r['brand_id'] ?>" <?= (isset($_REQUEST['brands']) && $_REQUEST['brands'] == $r['brand_id']) ? 'selected' : '' ?>><?= $r['brand_name'] ?></option>
                     <?php endwhile ?>
                   </optgroup>
                 </select>
@@ -178,7 +185,7 @@ include_once "includes/header.php";
                       <option value="null">Min Year</option>
                       <?php $date = date('Y');
                       for ($i = $date; $i >= 1900; $i--) { ?>
-                        <option value="<?= $i ?>"><?= $i ?></option>
+                        <option value="<?= $i ?>" <?= (isset($_REQUEST['min_year']) && $_REQUEST['min_year'] == $i) ? 'selected' : '' ?>><?= $i ?></option>
                       <?php } ?>
                     </select>
                   </div>
@@ -209,7 +216,7 @@ include_once "includes/header.php";
                       <option value="null">Max Year</option>
                       <?php $date = date('Y');
                       for ($i = $date; $i >= 1900; $i--) { ?>
-                        <option value="<?= $i ?>"><?= $i ?></option>
+                        <option value="<?= $i ?>" <?= (isset($_REQUEST['max_year']) && $_REQUEST['max_year'] == $i) ? 'selected' : '' ?>><?= $i ?></option>
                       <?php } ?>
                     </select>
 
@@ -239,26 +246,26 @@ include_once "includes/header.php";
                   <select class="form-control select2-show-search border-bottom-0 border-left-0 "
                     data-placeholder="Select" name="color">
                     <option value="null">Select Color</option>
-                    <option value="Beige">Beige</option>
-                    <option value="Black">Black</option>
-                    <option value="Blue">Blue</option>
-                    <option value="Brown">Brown</option>
-                    <option value="Cream">Cream</option>
-                    <option value="Gold">Gold</option>
-                    <option value="Gray">Gray</option>
-                    <option value="Green">Green</option>
-                    <option value="Orange">Orange</option>
-                    <option value="261,280">Pearl</option>
-                    <option value="Pink">Pink</option>
-                    <option value="Purple">Purple</option>
-                    <option value="Red">Red</option>
-                    <option value="Rose">Rose</option>
-                    <option value="Silver">Silver</option>
-                    <option value="Turquoise">Turquoise</option>
-                    <option value="Twotone">Twotone</option>
-                    <option value="White">White</option>
-                    <option value="Wine">Wine</option>
-                    <option value="Yellow">Yellow</option>
+                    <option value="Beige" <?= (isset($_REQUEST['color']) && $_REQUEST['color'] == 'Beige') ? 'selected' : '' ?>>Beige</option>
+                    <option value="Black" <?= (isset($_REQUEST['color']) && $_REQUEST['color'] == 'Black') ? 'selected' : '' ?>>Black</option>
+                    <option value="Blue" <?= (isset($_REQUEST['color']) && $_REQUEST['color'] == 'Blue') ? 'selected' : '' ?>>Blue</option>
+                    <option value="Brown" <?= (isset($_REQUEST['color']) && $_REQUEST['color'] == 'Brown') ? 'selected' : '' ?>>Brown</option>
+                    <option value="Cream" <?= (isset($_REQUEST['color']) && $_REQUEST['color'] == 'Cream') ? 'selected' : '' ?>>Cream</option>
+                    <option value="Gold" <?= (isset($_REQUEST['color']) && $_REQUEST['color'] == 'Gold') ? 'selected' : '' ?>>Gold</option>
+                    <option value="Gray" <?= (isset($_REQUEST['color']) && $_REQUEST['color'] == 'Gray') ? 'selected' : '' ?>>Gray</option>
+                    <option value="Green" <?= (isset($_REQUEST['color']) && $_REQUEST['color'] == 'Green') ? 'selected' : '' ?>>Green</option>
+                    <option value="Orange" <?= (isset($_REQUEST['color']) && $_REQUEST['color'] == 'Orange') ? 'selected' : '' ?>>Orange</option>
+                    <option value="261,280" <?= (isset($_REQUEST['color']) && $_REQUEST['color'] == '261,280') ? 'selected' : '' ?>>Pearl</option>
+                    <option value="Pink" <?= (isset($_REQUEST['color']) && $_REQUEST['color'] == 'Pink') ? 'selected' : '' ?>>Pink</option>
+                    <option value="Purple" <?= (isset($_REQUEST['color']) && $_REQUEST['color'] == 'Purple') ? 'selected' : '' ?>>Purple</option>
+                    <option value="Red" <?= (isset($_REQUEST['color']) && $_REQUEST['color'] == 'Red') ? 'selected' : '' ?>>Red</option>
+                    <option value="Rose" <?= (isset($_REQUEST['color']) && $_REQUEST['color'] == 'Rose') ? 'selected' : '' ?>>Rose</option>
+                    <option value="Silver" <?= (isset($_REQUEST['color']) && $_REQUEST['color'] == 'Silver') ? 'selected' : '' ?>>Silver</option>
+                    <option value="Turquoise" <?= (isset($_REQUEST['color']) && $_REQUEST['color'] == 'Turquoise') ? 'selected' : '' ?>>Turquoise</option>
+                    <option value="Twotone" <?= (isset($_REQUEST['color']) && $_REQUEST['color'] == 'Twotone') ? 'selected' : '' ?>>Twotone</option>
+                    <option value="White" <?= (isset($_REQUEST['color']) && $_REQUEST['color'] == 'White') ? 'selected' : '' ?>>White</option>
+                    <option value="Wine" <?= (isset($_REQUEST['color']) && $_REQUEST['color'] == 'Wine') ? 'selected' : '' ?>>Wine</option>
+                    <option value="Yellow" <?= (isset($_REQUEST['color']) && $_REQUEST['color'] == 'Yellow') ? 'selected' : '' ?>>Yellow</option>
                   </select>
                 </div>
               </div>
@@ -272,7 +279,7 @@ include_once "includes/header.php";
                     <option value="null">~~SELECT~~</option>
                     <?php $trans_query = get($dbc, "transmission WHERE transmission_sts = '1'");
                     while ($r_trans = mysqli_fetch_assoc($trans_query)): ?>
-                      <option value="<?= $r_trans['transmission_name'] ?>" style="text-transform: uppercase!important;">
+                      <option value="<?= $r_trans['transmission_name'] ?>" <?= (isset($_REQUEST['transmission']) && $_REQUEST['transmission'] == $r_trans['transmission_name']) ? 'selected' : '' ?> style="text-transform: uppercase!important;">
                         <?= $r_trans['transmission_name'] ?>
                       </option>
                     <?php endwhile ?>
@@ -284,7 +291,7 @@ include_once "includes/header.php";
                     <option value="null">~~SELECT~~</option>
                     <?php $st_query = get($dbc, "options WHERE option_sts = '1'");
                     while ($st_r = mysqli_fetch_assoc($st_query)): ?>
-                      <option value="<?= $st_r['option_name'] ?>" style="text-transform: uppercase!important;">
+                      <option value="<?= $st_r['option_name'] ?>" <?= (isset($_REQUEST['options']) && $_REQUEST['options'] == $st_r['option_name']) ? 'selected' : '' ?> style="text-transform: uppercase!important;">
                         <?= $st_r['option_name'] ?>
                       </option>
                     <?php endwhile ?>
@@ -306,7 +313,7 @@ include_once "includes/header.php";
                         $i = 1000;
                         while ($i < 50001) {
                           ?>
-                          <option value="<?= $i ?>">$<?= $i ?></option>
+                          <option value="<?= $i ?>" <?= (isset($_REQUEST['min_price']) && $_REQUEST['min_price'] == $i) ? 'selected' : '' ?>>$<?= $i ?></option>
                           <?php
                           $i = $i + 500;
                         }
@@ -324,7 +331,7 @@ include_once "includes/header.php";
                         $i = 1000;
                         while ($i < 50001) {
                           ?>
-                          <option value="<?= $i ?>">$<?= $i ?> </option>
+                          <option value="<?= $i ?>" <?= (isset($_REQUEST['max_price']) && $_REQUEST['max_price'] == $i) ? 'selected' : '' ?>>$<?= $i ?> </option>
                           <?php
                           $i = $i + 500;
                         }
@@ -346,7 +353,7 @@ include_once "includes/header.php";
                     $type = mysqli_query($dbc, "SELECT * FROM body_type ORDER BY body_type_name ASC");
                     while ($body = mysqli_fetch_assoc($type)):
                       ?>
-                      <option value="<?= $body['body_type_id'] ?>"><?= $body['body_type_name'] ?></option>
+                      <option value="<?= $body['body_type_id'] ?>" <?= (isset($_REQUEST['body_type']) && $_REQUEST['body_type'] == $body['body_type_id']) ? 'selected' : '' ?>><?= $body['body_type_name'] ?></option>
                       <?php
                     endwhile;
                     ?>
@@ -361,7 +368,7 @@ include_once "includes/header.php";
                     $fuel_type = mysqli_query($dbc, "SELECT * FROM fuel ORDER BY fuel_name ASC");
                     while ($fuel = mysqli_fetch_assoc($fuel_type)):
                       ?>
-                      <option value="<?= $fuel['fuel_name'] ?>"><?= $fuel['fuel_name'] ?></option>
+                      <option value="<?= $fuel['fuel_name'] ?>" <?= (isset($_REQUEST['fuel_type']) && $_REQUEST['fuel_type'] == $fuel['fuel_name']) ? 'selected' : '' ?>><?= $fuel['fuel_name'] ?></option>
                       <?php
                     endwhile;
                     ?>
@@ -614,6 +621,23 @@ include_once "includes/header.php";
                   </div>
                 </div>
               </div>
+              <div class="col-md-2" style="">
+                <label for="validationDefault02">Country: </label>
+                <div class="form-group">
+                  <select class="form-control select2-show-search border-bottom-0 border-left-0 w-100"
+                    data-placeholder="Select" name="country">
+                    <option value="null">Select Country</option>
+                    <?php
+                    $sql_country = mysqli_query($dbc, "SELECT DISTINCT c.country_id, c.country_name FROM countries c ORDER BY c.country_name ASC");
+                    while ($country = mysqli_fetch_assoc($sql_country)):
+                      ?>
+                      <option value="<?= $country['country_id'] ?>" <?= (isset($_REQUEST['country']) && $_REQUEST['country'] == $country['country_id']) ? 'selected' : '' ?>><?= htmlspecialchars($country['country_name']) ?></option>
+                    <?php
+                    endwhile;
+                    ?>
+                  </select>
+                </div>
+              </div>
               <div class="col-md-2 pt-5" style="text-align: left">
                 <div class="form-group">
                   <div class="form-check">
@@ -768,7 +792,7 @@ include_once "includes/header.php";
               </style>
               <div class="center-block text-center pt-3">
                 <?php
-                if ($count_query && mysqli_num_rows($count_query) > 0) {
+                if (@$count_query && mysqli_num_rows($count_query) > 0) {
                   $count_row = mysqli_fetch_assoc($count_query);
                   $total_row = $count_row['total'];
                   $totalpage = ceil($total_row / $limit);
@@ -898,14 +922,14 @@ include_once "includes/header.php";
                       href="advancesearch.php?<?php echo $query_string; ?>&page=<?php echo $page - 1; ?>">Pre</a></li>
                 <?php } ?>
                 <?php
-                for ($i = 1; $i <= $totalpage; $i++) {
+                for ($i = 1; $i <= @$totalpage; $i++) {
                   $active = ($i == $page) ? 'active' : '';
                   ?>
                   <li class="page-item <?php echo $active; ?>"><a class="page-link ml-1 mr-1"
                       href="advancesearch.php?<?php echo $query_string; ?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>
                   </li>
                 <?php } ?>
-                <?php if ($totalpage > $page) { ?>
+                <?php if (@$totalpage > $page) { ?>
                   <li class="page-item"><a class="page-link"
                       href="advancesearch.php?<?php echo $query_string; ?>&page=<?php echo $page + 1; ?>">Next</a></li>
                 <?php } ?>
@@ -983,3 +1007,4 @@ include_once "includes/footer.php";
     });
   }
 </script>
+</html>

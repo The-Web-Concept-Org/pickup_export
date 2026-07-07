@@ -60,6 +60,7 @@
 		<div class="arrival-btn">
 			<a href="stock.php">See More →</a>
 		</div>
+		</br>
 
 	</div>
 </section>
@@ -119,13 +120,14 @@
 	}
 
 	.arrival-item h4 {
-    margin-top: 10px;
-    margin-bottom: 2px;
-    font-size: 17px !important;
-    font-weight: 400 !important;        
-    color: #111;
-    text-transform: uppercase; /* uppercase */
-}
+		margin-top: 10px;
+		margin-bottom: 2px;
+		font-size: 17px !important;
+		font-weight: 400 !important;
+		color: #111;
+		text-transform: uppercase;
+		/* uppercase */
+	}
 
 	.arrival-item p {
 		margin: 0;

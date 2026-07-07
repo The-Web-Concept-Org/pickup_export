@@ -7,7 +7,7 @@
 		include "slider.php";
 		?>
 	</div>
-<div class="container-fluid mt-4">
+<div class="container-fluid mt-4 bg-white">
 	
 	<div class="row">
 		<div class="col-sm-2  d-none d-sm-block d-md-block">

@@ -8,8 +8,8 @@
     font-weight: 700;
     font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
       "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    font-size: 1rem;
-    line-height: 1.5;
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
     border-radius: 0.125rem;
   }
 
@@ -78,6 +78,186 @@ border: 1px solid #c61d10;
     padding: 10px;
     background: #fff;
   }
+
+
+  /* ================================
+   Sidebar Responsive Design
+================================ */
+
+.sidebar-quick-search-wrap,
+.sidebar-fb-section {
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Search box */
+.sidebar-quick-search {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.sidebar-quick-search form {
+    width: 100%;
+}
+
+.sidebar-quick-search .form-control {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+
+/* Facebook responsive */
+.sidebar-fb-content {
+    width: 100%;
+    overflow: hidden;
+}
+
+.fb-page,
+.fb-page span,
+.fb-page iframe {
+    max-width: 100% !important;
+    width: 100% !important;
+}
+
+
+/* Year dropdown responsive */
+.sidebar-year-row {
+    display: flex;
+    width: 100%;
+}
+
+.sidebar-year-row .form-control {
+    min-width: 0;
+    width: 100%;
+}
+
+
+/* Button */
+.sidebar-search-btn {
+    width: 100%;
+    max-width: 200px;
+}
+
+
+/* ================================
+   Tablet
+================================ */
+@media (max-width: 991px) {
+
+    .sidebar-section-header {
+        font-size: 15px;
+        padding: 8px 10px;
+    }
+
+    .sidebar-quick-search {
+        padding: 10px;
+    }
+
+    .sidebar-quick-search .form-control {
+        font-size: 12px;
+        height: 34px;
+    }
+
+    .sidebar-search-btn {
+        padding: 7px 25px;
+    }
+}
+
+
+/* ================================
+   Mobile
+================================ */
+@media (max-width: 576px) {
+
+    .sidebar-section-header {
+        font-size: 14px;
+        margin-bottom: 10px !important;
+        padding: 7px 8px;
+    }
+
+
+    .sidebar-quick-search {
+        padding: 10px 8px;
+        margin-top: 10px;
+    }
+
+
+    .sidebar-quick-search .form-control {
+        height: 36px;
+        font-size: 13px;
+    }
+
+
+    /* Year fields stack nicely */
+    .sidebar-year-row {
+        gap: 5px;
+    }
+
+
+    .sidebar-year-sep {
+        font-size: 14px;
+        line-height: 36px;
+    }
+
+
+    .sidebar-search-btn {
+        width: 100%;
+        max-width: none;
+        margin-top: 5px;
+        font-size: 14px;
+    }
+
+
+    /* Facebook button */
+    .sidebar-fb-content {
+        padding: 8px;
+    }
+
+
+    .sidebar-fb-content .btn {
+        width: 100%;
+        font-size: 13px;
+    }
+
+
+    /* Prevent Facebook iframe overflow */
+    .fb-page,
+    .fb-page iframe,
+    .fb-page span {
+        width: 100% !important;
+        min-width: 100% !important;
+    }
+
+}
+
+
+/* ================================
+   Very Small Devices
+================================ */
+@media (max-width: 360px) {
+
+    .sidebar-section-header {
+        font-size: 13px;
+    }
+
+
+    .sidebar-quick-search .form-control {
+        font-size: 12px;
+        height: 34px;
+    }
+
+
+    .sidebar-year-row {
+        flex-direction: column;
+    }
+
+
+    .sidebar-year-sep {
+        display: none;
+    }
+
+}
 </style>
 
 <!-- Quick Search -->
@@ -186,7 +366,7 @@ border: 1px solid #c61d10;
 <div class="sidebar-fb-section" align="center">
   <h4 class="sidebar-section-header">Facebook Page</h4>
 
-  <div class="sidebar-fb-content">
+  <!-- <div class="sidebar-fb-content">
     <div id="fb-root"></div>
 
     <script async defer crossorigin="anonymous"
@@ -210,7 +390,7 @@ border: 1px solid #c61d10;
       Check Our Fb Page
     </a>
 
-  </div>
+  </div> -->
 </div>
 
 <!-- <div class="card">
