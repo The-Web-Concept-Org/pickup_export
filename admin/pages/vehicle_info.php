@@ -740,7 +740,7 @@
 
 	<div class="row">
 
-		<div class="col-sm-3">
+		<div class="col-sm-4">
 
 			<label for="">Vehicle Type</label>			
 
@@ -760,7 +760,7 @@
 
 		</div>
 
-		<div class="col-sm-3">
+		<!-- <div class="col-sm-3">
 
 			<label for="">Country</label>			
 
@@ -778,9 +778,9 @@
 
 			</select>
 
-		</div>
+		</div> -->
 
-		<div class="col-sm-3">
+		<div class="col-sm-4">
 
 			<div class="form-group">
 
@@ -792,7 +792,7 @@
 
 		</div>
 
-		<div class="col-sm-3">
+		<div class="col-sm-4">
 
 			<div class="form-group">
 
