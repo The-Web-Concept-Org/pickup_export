@@ -405,7 +405,6 @@ if ($resource === 'search') {
         'offset' => $offset,
         'count' => count($vehicles),
         'vehicles' => $vehicles,
-        // 'query' => $sql
     ]);
 }
 
